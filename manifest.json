@@ -2,7 +2,7 @@
 	"name": "Creature Tracker Minimap",
 	"description": "A very simple Valheim mod to display creatures in the minimap.",
 	"author": "Fusionette",
-	"version_number": "0.9.0",
+	"version_number": "0.9.5",
 	"website_url": "https://github.com/Fusionette/CreatureTrackerMinimap/releases",
 	"dependencies": ["denikson-BepInExPack_Valheim-5.4.2105"]
 }

@@ -5,16 +5,26 @@ namespace CreatureTrackerMinimap
     internal class CreatureTrackerComponent : MonoBehaviour
     {
         private string displayName;
+        private Sprite displayIcon;
         private Minimap.PinData pinData;
 
-        public void Initialize(string displayName)
+        public void Initialize(string displayName, Sprite displayIcon)
         {
             this.displayName = displayName;
+            this.displayIcon = displayIcon;
         }
 
         private void Update()
         {
-            if (pinData == null) pinData = Minimap.instance.AddPin(base.transform.position, Minimap.PinType.Icon3, displayName, false, false);
+            if (pinData == null)
+            {
+                pinData = Minimap.instance.AddPin(base.transform.position, Minimap.PinType.Hildir1, displayName, false, false);
+                if (displayIcon != null)
+                {
+                    pinData.m_icon = displayIcon;
+                    pinData.m_worldSize = 0f;
+                }
+            }
             pinData.m_pos = base.transform.position;
         }
 

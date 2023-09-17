@@ -13,5 +13,8 @@ A very simple Valheim mod to display creatures in the minimap.
 
 ## Changelog
 
+v0.9.5
+- Use the creature's trophy drop as its minimap icon.
+
 v0.9.0
 - Initial working prototype.

@@ -13,8 +13,22 @@ namespace CreatureTrackerMinimap
             if (Player.m_localPlayer == null) return;
             GameObject gameObject = __instance.gameObject;
             string displayName = gameObject.GetComponent<Character>().m_name;
-            //Player.m_localPlayer.Message(MessageHud.MessageType.TopLeft, displayName);
-            gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName);
+            Sprite displayIcon = null;
+
+            CharacterDrop drops = gameObject.GetComponent<CharacterDrop>();
+            if (drops != null)
+            {
+                foreach (CharacterDrop.Drop drop in drops.m_drops)
+                {
+                    if (drop.m_prefab.name.ToLower().StartsWith("trophy"))
+                    {
+                        ItemDrop item = drop.m_prefab.GetComponent<ItemDrop>();
+                        displayIcon = item.m_itemData.GetIcon();
+                        break;
+                    }
+                }
+            }
+            gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName, displayIcon);
         }
     }
 }

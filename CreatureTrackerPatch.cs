@@ -23,11 +23,15 @@ namespace CreatureTrackerMinimap
             {
                 foreach (CharacterDrop.Drop drop in drops.m_drops)
                 {
-                    if (drop.m_prefab.name.ToLower().StartsWith("trophy"))
+                    bool trophy = drop.m_prefab.name.ToLower().StartsWith("trophy");
+                    if (trophy || (displayIcon == null))
                     {
+                        // Greylings don't have a trophy, so always assign the icon
+                        // for the first drop in the table. Then, if we find a trophy,
+                        // use it instead.
                         ItemDrop item = drop.m_prefab.GetComponent<ItemDrop>();
                         displayIcon = item.m_itemData.GetIcon();
-                        break;
+                        if (trophy) break;
                     }
                 }
             }

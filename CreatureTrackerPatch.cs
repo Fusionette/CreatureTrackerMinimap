@@ -10,9 +10,12 @@ namespace CreatureTrackerMinimap
         [HarmonyPostfix]
         static void Character_Awake(Character __instance)
         {
-            if (Player.m_localPlayer == null) return;
             GameObject gameObject = __instance.gameObject;
-            string displayName = gameObject.GetComponent<Character>().m_name;
+            Character character = gameObject.GetComponent<Character>();
+
+            if (character.IsPlayer()) return;
+
+            string displayName = character.m_name;
             Sprite displayIcon = null;
 
             CharacterDrop drops = gameObject.GetComponent<CharacterDrop>();

@@ -14,6 +14,12 @@ namespace CreatureTrackerMinimap
             this.displayIcon = displayIcon;
         }
 
+        public void SetName(string displayName)
+        {
+            this.displayName = displayName;
+            if (pinData != null) pinData.m_name = displayName;
+        }
+
         private void Update()
         {
             if (pinData == null)

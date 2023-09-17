@@ -37,5 +37,20 @@ namespace CreatureTrackerMinimap
             }
             gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName, displayIcon);
         }
+
+        [HarmonyPatch(typeof(Tameable), "Awake")]
+        [HarmonyPostfix]
+        static void Tameable_Awake(Tameable __instance, Character ___m_character)
+        {
+            if (!___m_character.IsTamed()) return;
+            ___m_character.GetComponent<CreatureTrackerComponent>().SetName(__instance.GetHoverName());
+        }
+
+        [HarmonyPatch(typeof(Tameable), "RPC_SetName")]
+        [HarmonyPostfix]
+        static void Tameable_RPC_SetName(Tameable __instance, long sender, string name, string authorId)
+        {
+            __instance.GetComponent<CreatureTrackerComponent>().SetName(__instance.GetHoverName());
+        }
     }
 }

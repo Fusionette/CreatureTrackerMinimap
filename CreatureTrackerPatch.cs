@@ -35,7 +35,14 @@ namespace CreatureTrackerMinimap
                     }
                 }
             }
-            gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName, displayIcon);
+            gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName, displayIcon, __instance.GetLevel());
+        }
+
+        [HarmonyPatch(typeof(Character), "SetLevel")]
+        [HarmonyPostfix]
+        static void Character_SetLevel(Character __instance, int level)
+        {
+            __instance.GetComponent<CreatureTrackerComponent>().SetLevel(__instance.GetLevel());
         }
 
         [HarmonyPatch(typeof(Tameable), "Awake")]

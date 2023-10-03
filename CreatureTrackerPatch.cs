@@ -38,6 +38,20 @@ namespace CreatureTrackerMinimap
             gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName, displayIcon, __instance.GetLevel());
         }
 
+        [HarmonyPatch(typeof(Fish), "Awake")]
+        [HarmonyPostfix]
+        static void Fish_Awake(Fish __instance)
+        {
+            GameObject gameObject = __instance.gameObject;
+            ItemDrop item = __instance.GetComponent<ItemDrop>();
+            if (item == null) return;
+
+            string displayName = __instance.m_name;
+            Sprite displayIcon = item.m_itemData.GetIcon();
+
+            gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName, displayIcon, 0);
+        }
+
         [HarmonyPatch(typeof(Character), "SetLevel")]
         [HarmonyPostfix]
         static void Character_SetLevel(Character __instance, int level)

@@ -15,6 +15,9 @@ A very simple Valheim mod to display creatures in the minimap.
 
 ## Changelog
 
+v0.9.8
+- Added a config setting to toggle tracking Fish.
+
 v0.9.7
 - Show fish on the minimap.
 - Update for BepInEx 5.4.2200.

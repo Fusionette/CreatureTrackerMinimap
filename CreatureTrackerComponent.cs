@@ -8,11 +8,13 @@ namespace CreatureTrackerMinimap
         private string displayLevel;
         private Sprite displayIcon;
         private Minimap.PinData pinData;
+        private bool isFish;
 
-        public void Initialize(string displayName, Sprite displayIcon, int level)
+        public void Initialize(string displayName, Sprite displayIcon, int level, bool isFish)
         {
             this.displayName = displayName;
             this.displayIcon = displayIcon;
+            this.isFish = isFish;
             SetLevel(level);
         }
 
@@ -36,6 +38,12 @@ namespace CreatureTrackerMinimap
 
         private void Update()
         {
+            if (isFish && CreatureTrackerMinimap.cfgTrackFish.Value == false)
+            {
+                OnDestroy();
+                return;
+            }
+
             if (pinData == null)
             {
                 pinData = Minimap.instance.AddPin(base.transform.position, Minimap.PinType.Hildir1, displayName + displayLevel, false, false);
@@ -52,6 +60,7 @@ namespace CreatureTrackerMinimap
         {
             if (pinData == null) return;
             Minimap.instance.RemovePin(pinData);
+            pinData = null;
         }
     }
 }

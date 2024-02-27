@@ -35,7 +35,7 @@ namespace CreatureTrackerMinimap
                     }
                 }
             }
-            gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName, displayIcon, __instance.GetLevel());
+            gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName, displayIcon, __instance.GetLevel(), false);
         }
 
         [HarmonyPatch(typeof(Fish), "Awake")]
@@ -49,7 +49,7 @@ namespace CreatureTrackerMinimap
             string displayName = __instance.m_name;
             Sprite displayIcon = item.m_itemData.GetIcon();
 
-            gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName, displayIcon, 0);
+            gameObject.AddComponent<CreatureTrackerComponent>().Initialize(displayName, displayIcon, 0, true);
         }
 
         [HarmonyPatch(typeof(Character), "SetLevel")]

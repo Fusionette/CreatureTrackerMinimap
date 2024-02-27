@@ -73,5 +73,14 @@ namespace CreatureTrackerMinimap
         {
             __instance.GetComponent<CreatureTrackerComponent>().SetName(__instance.GetHoverName());
         }
+
+        [HarmonyPatch(typeof(EnemyHud), "UpdateHuds")]
+        [HarmonyPrefix]
+        static void EnemyHud_UpdateHuds(EnemyHud __instance, Player player, Sadle sadle, float dt)
+        {
+            __instance.m_maxShowDistance = CreatureTrackerMinimap.cfgHudDistance.Value;
+            __instance.m_hoverShowDuration = CreatureTrackerMinimap.cfgHudDuration.Value;
+        }
+
     }
 }

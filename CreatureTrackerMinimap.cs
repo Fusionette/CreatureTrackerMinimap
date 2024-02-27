@@ -14,11 +14,15 @@ namespace CreatureTrackerMinimap
 
         public static ConfigEntry<int> cfgNexusID;
         public static ConfigEntry<bool> cfgTrackFish;
+        public static ConfigEntry<float> cfgHudDistance;
+        public static ConfigEntry<float> cfgHudDuration;
 
         void Awake()
         {
             cfgNexusID = Config.Bind<int>("General", "NexusID", 2706, "Nexus ID to check for updates.");
             cfgTrackFish = Config.Bind<bool>("General", "TrackFish", true, "Show Fish on the minimap.");
+            cfgHudDistance = Config.Bind<float>("Hud", "ShowDistance", 10f, "Show enemy health bars on mouse hover from this distance.");
+            cfgHudDuration = Config.Bind<float>("Hud", "ShowDuration", 60f, "Keep enemy health bars visible for this many seconds.");
 
             harmony.PatchAll();
         }

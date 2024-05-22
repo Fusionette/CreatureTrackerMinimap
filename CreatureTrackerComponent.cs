@@ -9,6 +9,7 @@ namespace CreatureTrackerMinimap
         private Sprite displayIcon;
         private Minimap.PinData pinData;
         private bool isFish;
+        private bool showName;
 
         public void Initialize(string displayName, Sprite displayIcon, int level, bool isFish)
         {
@@ -21,7 +22,7 @@ namespace CreatureTrackerMinimap
         public void SetName(string displayName)
         {
             this.displayName = displayName;
-            if (pinData != null) pinData.m_name = displayName + displayLevel;
+            if (pinData != null) pinData.m_name = GetDisplayName();
         }
 
         public void SetLevel(int level)
@@ -33,7 +34,12 @@ namespace CreatureTrackerMinimap
             else
                 this.displayLevel = string.Empty;
 
-            if (pinData != null) pinData.m_name = displayName + displayLevel;
+            if (pinData != null) pinData.m_name = GetDisplayName();
+        }
+
+        private string GetDisplayName()
+        {
+            return showName ? displayName + displayLevel : "";
         }
 
         private void Update()
@@ -46,13 +52,20 @@ namespace CreatureTrackerMinimap
 
             if (pinData == null)
             {
-                pinData = Minimap.instance.AddPin(base.transform.position, Minimap.PinType.Hildir1, displayName + displayLevel, false, false);
+                showName = CreatureTrackerMinimap.cfgShowNames.Value;
+                pinData = Minimap.instance.AddPin(base.transform.position, Minimap.PinType.Hildir1, GetDisplayName(), false, false);
                 if (displayIcon != null)
                 {
                     pinData.m_icon = displayIcon;
                     pinData.m_worldSize = 0f;
                 }
             }
+            else if (showName != CreatureTrackerMinimap.cfgShowNames.Value)
+            {
+                showName = CreatureTrackerMinimap.cfgShowNames.Value;
+                pinData.m_name = GetDisplayName();
+            }
+
             pinData.m_pos = base.transform.position;
         }
 

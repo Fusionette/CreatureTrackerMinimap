@@ -11,9 +11,14 @@ A very simple Valheim mod to display creatures in the minimap.
 - Shows all creatures in the minimap.
 - Uses the creature's trophy as its minimap icon.
 - Tamed creatures display their custom name.
-- Works on Valheim 0.217.24
+- Works on Valheim 0.218.15 (Ashlands)
 
 ## Changelog
+
+v0.9.9
+- Added a config setting to toggle creature names on the map screen.
+- Added settings to control the enemy health bar visibility on mouse hover.
+- Update for BepInEx 5.4.2202.
 
 v0.9.8
 - Added a config setting to toggle tracking Fish.

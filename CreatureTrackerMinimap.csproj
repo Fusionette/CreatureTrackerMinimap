@@ -40,6 +40,9 @@
     <Reference Include="BepInEx">
       <HintPath>libs\BepInEx.dll</HintPath>
     </Reference>
+    <Reference Include="Splatform">
+      <HintPath>libs\Splatform.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

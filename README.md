@@ -11,9 +11,12 @@ A very simple Valheim mod to display creatures in the minimap.
 - Shows all creatures in the minimap.
 - Uses the creature's trophy as its minimap icon.
 - Tamed creatures display their custom name.
-- Works on Valheim 0.218.15 (Ashlands)
+- Works on Valheim 0.220.5
 
 ## Changelog
+
+v0.9.10
+- Update for Valheim 0.220.5.
 
 v0.9.9
 - Added a config setting to toggle creature names on the map screen.

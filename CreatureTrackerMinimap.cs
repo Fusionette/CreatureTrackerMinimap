@@ -9,7 +9,7 @@ namespace CreatureTrackerMinimap
     {
         private const string modGUID = "Fusionette.CreatureTrackerMinimap";
         private const string modName = "Creature Tracker Minimap";
-        private const string modVersion = "0.9.9";
+        private const string modVersion = "0.9.10";
         private readonly Harmony harmony = new Harmony(modGUID);
 
         public static ConfigEntry<int> cfgNexusID;

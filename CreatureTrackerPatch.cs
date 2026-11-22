@@ -23,6 +23,7 @@ namespace CreatureTrackerMinimap
             {
                 foreach (CharacterDrop.Drop drop in drops.m_drops)
                 {
+                    if (drop.m_prefab == null) continue;
                     bool trophy = drop.m_prefab.name.ToLower().StartsWith("trophy");
                     if (trophy || (displayIcon == null))
                     {
@@ -30,6 +31,9 @@ namespace CreatureTrackerMinimap
                         // for the first drop in the table. Then, if we find a trophy,
                         // use it instead.
                         ItemDrop item = drop.m_prefab.GetComponent<ItemDrop>();
+                        // Drops can be non-items (e.g. Zil & Thungr first drop is
+                        // the Zil creature), so skip anything without an ItemDrop.
+                        if (item == null) continue;
                         displayIcon = item.m_itemData.GetIcon();
                         if (trophy) break;
                     }
